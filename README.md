@@ -20,9 +20,3 @@ wget -qO- https://raw.github.com/ma6174/vim/master/setup.sh | sh -x
     打开vim并执行bundle程序:BundleInstall
     重新打开vim即可看到效果
     
-了解更多vim使用的小技巧：
-
-  tips.md
-查看更新日志：
-
-  update_log.md
