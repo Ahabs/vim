@@ -1,4 +1,5 @@
 
+![](https://github.com/ma6174/vim/raw/master/screenshot.png)
 
 简易安装方法：
 
