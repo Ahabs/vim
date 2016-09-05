@@ -20,3 +20,16 @@ wget -qO- https://raw.github.com/ma6174/vim/master/setup.sh | sh -x
     打开vim并执行bundle程序:BundleInstall
     重新打开vim即可看到效果
     
+    
+    第二种安装(简单式)
+    $ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+$ git clone https://github.com/windy/ruby-vimrc.git
+
+$ cp ruby-vimrc/vimrc ~/.vimrc
+
+$ vim
+  # 输入以下指令
+  :PluginInstall( in vim input this command)
+  # 等待插件安装完成, 重启 vim, OK
+  :q!
+    
