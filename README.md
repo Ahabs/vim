@@ -32,4 +32,14 @@ $ vim
   :PluginInstall( in vim input this command)
   # 等待插件安装完成, 重启 vim, OK
   :q!
+  
+  三纯ruby的配置
+  
+  Install
+    cd ~
+    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    wget https://raw.githubusercontent.com/xueshibing/vim-config/master/.vimrc
+    
+    Install plugins
+    Launch vim and run :PluginInstall
     
