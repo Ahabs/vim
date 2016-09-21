@@ -45,3 +45,5 @@ $ vim
     
     Launch vim and run :PluginInstall
     
+    安装好后 输入:NERDTree打开树形界面
+    
