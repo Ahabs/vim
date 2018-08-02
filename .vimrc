@@ -1,0 +1,333 @@
+set nocompatible      " We're running Vim, not Vi!
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+Plugin 'L9'
+Plugin 'tpope/vim-rails'
+Plugin 'bufexplorer.zip'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'FuzzyFinder'
+Plugin 'Align'
+Plugin 'tpope/vim-surround'
+Plugin 'kana/vim-textobj-user'
+"Plugin 'terryma/vim-multiple-cursors'
+
+" ----------------------- vim 操作git的插件 ------------------------------
+" Plugin 'Shougo/unite.vim'
+" " vimproc 必须要，可能还需要执行 make， 请阅读官方说明: https://github.com/Shougo/vimproc.vim
+" Plugin 'Shougo/vimproc'
+" Plugin 'chemzqm/easygit'
+" Plugin 'chemzqm/unite-git-log'
+" ----------------------- vim 操作git的插件 ------------------------------
+
+" 下方状态栏插件
+Plugin 'Lokaltog/vim-powerline.git'
+
+" dash 插件
+Plugin 'rizzatti/dash.vim'
+
+" vim 语法高亮的样式
+Plugin 'dracula/vim'
+
+" 模糊搜索框
+" Plugin 'fuzzfinder.vim'
+
+" 模糊搜索当前文件中所有函数 --begin 
+Plugin 'tacahiroy/ctrlp-funky'
+" 需要Python支持
+Plugin 'Yggdroot/LeaderF'
+" 设置leaderf 的快捷键
+nmap <C-t> :LeaderfFile <CR>
+nmap <C-p> :LeaderfFile <CR>
+
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+let g:ctrlp_funky_syntax_highlight = 1
+let g:ctrlp_extensions = ['funky']
+" 模糊搜索当前文件中所有函数 --ending
+
+" vim-powerline插件配置
+set laststatus=2
+set t_Co=256
+let g:powerline_symbols = 'unicode'
+set encoding=utf8
+
+" ruby写方法时end 前置条件需要下载 ruby-macros.vim插件、下载地址： http://www.vim.org/scripts/script.php?script_id=163
+" source $VIMRUNTIME/ruby-macros.vim
+
+call vundle#end()
+filetype plugin indent on
+
+syntax on             " Enable syntax highlighting
+let mapleader = ","
+let g:ruby_path = system('rvm current')
+set statusline=[%F]%y%r%m%*%=[Line:%l/%L][%p%%]
+set laststatus=2
+"colorscheme molokai
+colorscheme desert
+"set background=dark
+"let g:molokai_original = 1
+"let g:rehash256 = 1
+"set iskeyword+=!,?,@,_
+set history=500
+set wildmenu
+set wildmode=list:full
+set wildignore+=*.o,*.obj,.git,.svn,*.png,*.bmp,*.jpg,*.log,*.ico,*.swf,*.gif
+set autoread
+set nonumber
+
+" 设置行号样式
+set nu
+" 设置行号滚动 -- 太不友好了
+" set relativenumber
+
+"set dictionary+=/usr/share/dict/words
+set listchars=trail:.
+set noerrorbells 
+set novisualbell
+"set t_vb=
+" Fast editing of the .vimrc
+"nmap <leader>re :e! ~/.vimrc<CR>
+
+"" When vimrc is edited, reload it
+"autocmd! bufwritepost vimrc source ~/.vimrc
+"highlight LeaderTab guifg=#666666
+" 匹配行首tab
+"match LeaderTab /\t/
+nmap <leader>w :w!<CR>
+map <silent> <leader><CR> :noh<CR>
+"移动代码
+"nmap <C-p> <ESC>yyp
+"nmap <C-UP> <ESC>mz:m-2<CR>`z
+"nmap <C-DOWN> <ESC>mz:m+<CR>`z
+"vmap <C-UP> :m'<-2<CR>`>my`<mzgv`yo`z
+"vmap <C-DOWN> :m'>+<CR>`<my`>mzgv`yo`z
+"大小写转换
+nmap <leader>u viwgU
+nmap <leader>l viwgu
+nmap <leader>xxd :%!xxd<CR>
+
+set mouse=i
+nmap <leader>ma :set mouse=a<CR>
+nmap <leader>mc :set mouse=i<CR>
+"nmap <leader>c :CMiniBufExplorer<cr>
+"nmap <leader>u :UMiniBufExplorer<cr>
+"nmap <leader>tb :MiniBufExplorer<cr>
+
+"set directory=~/.vim/swap
+nmap <leader>nv :set invlist<CR>
+nmap <leader>nn :set number!<CR>
+nmap <leader>nr :set relativenumber!<CR>
+nmap <leader>ne :set list!<CR>
+nmap <leader>qq :only<CR>
+nmap <leader>qa :qa<CR>
+"nmap <leader>f :CommandT<CR>
+nmap <leader>tl :TlistToggle<CR>
+nmap <leader>tn :tabnew<CR>
+nmap <leader>tc :tabclose<CR>
+nmap <leader>to :tabonly<CR>
+vmap <leader>ae :Align =<CR>
+vmap <leader>ah :Align => { }<CR>
+vmap <leader>av :Align \|<CR>
+vmap <leader>ac :Align #<CR>
+
+"noremap <C-TAB> <ESC>:tabnext<CR>
+"noremap <C-S-TAB> <ESC>:tabprevious<CR>
+"inoremap <C-TAB> <ESC>:tabnext<CR>i
+"inoremap <C-S-TAB> <ESC>:tabprevious<CR>i
+
+"noremap <C-RIGHT> <ESC>:tabnext<CR>
+"noremap <C-LEFT> <ESC>:tabprevious<CR>
+"inoremap <C-RIGHT> <ESC>:tabnext<CR>i
+"inoremap <C-LEFT> <ESC>:tabprevious<CR>i
+"noremap <C-a> <ESC>:bp<CR>
+"noremap <C-e> <ESC>:bn<CR>
+nmap <leader>e :NERDTreeToggle<CR>
+"nmap <leader>clr :Calendar<CR>
+noremap # #N
+nmap <leader>sw #N
+
+" Ctrl-s saves
+inoremap <C-s> <Esc>:w<CR>a
+nnoremap <C-s> :w<CR>
+"FUF
+nmap <leader>f :FufFile!<CR>
+"nmap <leader>fg :FufTaggedFile<CR>
+"nmap <leader>ft :FufTag<CR>
+"nmap <leader>fb :FufBuffer<CR>
+"nmap <leader>fm :FufMruFile<CR>
+"let g:fuf_keyOpenSplit = 'i'
+"let g:fuf_keyOpenVsplit='s'
+
+nmap <leader>pc :pclose<CR>
+set ts=2
+set expandtab       "Use softtabstop spaces instead of tab characters for indentation
+set shiftwidth=2    "Indent by 4 spaces when using >>, <<, == etc.
+set softtabstop=2   "Indent by 4 spaces when pressing <TAB>
+" 语法缩进命令
+set autoindent
+" 自动缩进
+set ai!
+
+"set smartindent     "Automatically inserts indentation in some cases
+"set cindent         "Like smartindent, but stricter and more customisable
+set hlsearch
+set ignorecase "Ignore case when searching
+set smartcase
+set incsearch "Make search act like search in modern browsers
+
+" 设置可向外部复制
+set clipboard=unnamed
+
+"鼠标可用
+set mouse=a
+set nocp
+"解决backspace 不能删除正在编辑的文件
+set backspace=indent,eol,start
+"运行ruby代码
+nmap <f5> <Esc>:!ruby % <CR>
+"缩进
+nmap <f12> =G <CR>
+
+" 设置全选
+nmap <C-A> ggvG <CR>
+
+" 设置查找关键字后背景高亮去除
+nmap <f4> :noh <CR>
+
+" 让vim不要自动添加新的注释行 
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" 设置不默认折行
+set nowrap!
+
+set nobomb
+nnoremap < v<
+nnoremap > v>
+vnoremap < <gv
+vnoremap > >gv
+set shortmess=at
+set nofoldenable
+set foldlevel=1000
+filetype on           " Enable filetype detection
+filetype indent on    " Enable filetype-specific indenting
+filetype plugin on    " Enable filetype-specific plugins
+
+"设定文件编码类型，彻底解决中文编码问题
+let &termencoding=&encoding
+set fileencodings=utf-8
+",gbk,ucs-bom,cp936
+
+"----------------below for txt file
+"让文本文件也有高亮，thanks to xbeta@smth
+augroup filetypedetect
+  au BufNewFile,BufRead *.* setf ztxt
+augroup END
+
+
+" taglist插件配置
+let Tlist_Show_One_File=1    " 不同时显示多个文件的tag，只显示当前文件的
+let Tlist_Exit_OnlyWindow=1  " 如果taglist窗口是最后一个窗口，则退出vim
+"let Tlist_Use_Right_Window=1 " 在右侧窗口中显示taglist窗口
+
+"Remap VIM 0
+"map 0 ^
+"map 9 $
+"map <SPACE> /
+"nmap <leader>OO O<ESC>
+"nmap <leader>oo o<ESC>
+nmap <leader>ct  ~
+nmap <leader>ss :%s///g<LEFT><LEFT><LEFT>
+nmap <leader>st :%s/\s\+$//g<CR>
+nmap <leader>sb :%s/^\s*\t\+/  /g<CR>
+nmap <leader>se :s/^/\=
+nmap <leader>me :.,$normal @
+map <F2> :set nowrap! <CR>
+map <F3> :NERDTreeToggle<CR>
+set tags+=./tags
+nmap <F8> <ESC>:!~/gems/rtags/bin/rtags -R --vi `find app lib -name *.rb`<CR>
+nmap <leader>re <ESC>:!~/gems/rtags/bin/rtags -R --vi `find app lib -name *.rb`<CR>
+nmap <leader>rv <ESC>:Rview<CR>
+nmap <leader>rc <ESC>:Rcon<CR>
+set pastetoggle=<F9> "default
+
+"map <F3> :Grep -R -I<CR>
+"let Grep_Path = '/bin/grep'
+let Grep_Skip_Files = '*.bak *~ *.o *.obj .git *.png *.bmp *.jpg *.ico *swf *.gif *.js *.css tags'
+let Grep_Skip_Dirs = 'tmp log cache public .git .svn tags'
+"窗口
+nmap <leader>ww <C-W>_<C-W>\|
+nmap <leader>we <C-W>=
+
+nmap <leader>de "_d
+nmap <leader>wr <C-W>_
+nmap <leader>wc <C-W>c
+nmap <leader>wl <C-W>\|
+nmap <leader>wf <C-W>g]
+nmap <leader>wn <C-W>n
+nmap <leader>wd <C-W>g}
+nmap <leader>wt <C-W>T
+nmap <leader>wp <C-W>p
+nmap <leader>wr <C-W>r
+nmap <leader>wx <C-W>x
+nmap <leader>ws <C-W>s
+nmap <leader>wv <C-W>v
+map <C-j> <C-W>+
+map <C-k> <C-W>-
+map <C-h> <C-W><
+map <C-l> <C-W>>
+"map <C-+> <C-W>+
+"map <C--> <C-W>-
+let g:NERDTreeWinSize=31
+nmap <leader>cf =)
+nmap <leader>rb <ESC>:bd<CR>
+nmap <silent> <leader>gj :cn<Cr>
+nmap <silent> <leader>gk :cN<Cr>
+nmap <silent> <leader>gw :cw<Cr>
+nmap <silent> <leader>gc :ccl<Cr>
+"let g:vimim_toggle_list='english,wubi,pinyin'
+"let g:vimim_chinese_input_mode = 0
+let g:fuf_abbrevMap = {
+      \   "m:" : [
+      \     "app/models/**",
+      \     "app/mailers/**",
+      \   ],
+      \   "l:" : [
+      \     "lib/**",
+      \     "app/services/**",
+      \   ],
+      \   "h:" : [
+      \     "app/helpers/**",
+      \   ],
+      \   "c:" : [
+      \     "app/controllers/**",
+      \   ],
+      \   "v:" : [
+      \     "app/views/**",
+      \   ],
+      \ }
+
+call textobj#user#plugin('number', {
+      \   'number': {
+      \     'pattern': '\<\d\+\(\.\d\+\)\?\>',
+      \     'select': ['an', 'in'],
+      \   },
+      \ })
+
+
+let g:ctrlp_extensions = ['tag']
+let g:ctrlp_custom_ignore = {
+      \ 'dir': '\v[\/](log|tmp|doc|vendor|\.git)$',
+      \ 'file': '\v\.(log|png|jpg|css|js|gif)$',
+      \ }
+let g:acp_enableAtStartup = 1
+
